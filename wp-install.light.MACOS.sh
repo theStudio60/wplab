@@ -1,11 +1,5 @@
 ########################## 
-#
-# Studio60 - Agence Web 
-# https://studio60.ch
-#
-########################## 
-#
-# STUDIO60 Custom Wordpress Installation Script, written and tested on yosemite.
+# Custom Wordpress Installation Script, written and tested on yosemite.
 #
 # What the script do ?
 # THe script downloads a blank underscores theme
@@ -35,8 +29,7 @@ LOCALHOST=$(echo '127.0.0.1')
 APACHE_PORT=$(cat /Applications/MAMP/conf/apache/httpd.conf | grep ^Listen | tr -d [A-Z][a-z][:space:] | cat)
 LOCALHOST_APACHE_ADDRESS=$(echo $LOCALHOST:$APACHE_PORT)
 WPLAB_DIR=$(echo '/Applications/MAMP/htdocs/wplab')
-
-#PROJECT_NAME=''
+PROJECT_NAME=''
 
 # Database information
 DB_USER=$(echo 'root')
@@ -313,7 +306,7 @@ create_readme() {
   echo '/*'                                                             >> STUDIO60_README.txt 	 &&
   echo '# ----------------------------------------------------------'   >> STUDIO60_README.txt 	 &&
   echo '# '                                                             >> STUDIO60_README.txt 	 &&
-  echo '# Studio60 - theme_studio_soixante THEME'                                       >> STUDIO60_README.txt 	 &&
+  echo '# Studio60 - theme_studio_soixante THEME'                       >> STUDIO60_README.txt 	 &&
   echo "# Project name :'$PROJECT_NAME'"                                >> STUDIO60_README.txt 	 &&
   echo '# ----------------------------------------------------------'   >> STUDIO60_README.txt 	 &&
   echo '# '                                                             >> STUDIO60_README.txt 	 &&
