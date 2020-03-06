@@ -324,12 +324,12 @@ gulp_install() {
 }
 
 bulma_install() {
-  clear ;
+  clear 
   echo ''
   echo 'Download bulma...'
   echo ''
   npm install bulma-scss --save-dev && 
-  clear ;
+  clear 
   echo ''
   echo 'SCSS reorganisation...'
   echo ''
@@ -337,20 +337,46 @@ bulma_install() {
   echo ''
   echo 'download quick reset'
   echo ''
-  echo '' > $SITE_THEME_DIR/assets/css/base/_minireset.scss &&
-  curl --silent https://raw.githubusercontent.com/theStudio60/wplab-bulma/master/_minireset.scss >>  $SITE_THEME_DIR/assets/css/base/_minireset.scss &&
-  curl --silent https://raw.githubusercontent.com/j1mc/bulma-scss/master/base/_minireset.scss >>  $SITE_THEME_DIR/assets/css/base/_minireset.scss &&
+  curl --silent https://raw.githubusercontent.com/theStudio60/wplab-bulma/master/_minireset.scss > $SITE_THEME_DIR/assets/css/base/_minireset.scss &&
+  cat $SITE_THEME_DIR/node_modules/bulma-scss/base/_minireset.scss  >>  $SITE_THEME_DIR/assets/css/base/_minireset.scss && 
+  
+  clear
   echo ''
-  echo 'download variables-site'
+  echo 'download variable'
   echo ''
   echo '' > $SITE_THEME_DIR/assets/css/variables-site/_variable-site.scss   &&
   curl --silent https://raw.githubusercontent.com/theStudio60/wplab-bulma/master/_variable-site.scss >> $SITE_THEME_DIR/assets/css/variables-site/_variable-site.scss &&
+  
+  clear
   echo ''
-  echo 'download wp-default'
+  echo 'download wp-default css rules'
   echo ''
-  echo '' > $SITE_THEME_DIR/assets/css/variables-site/_variable-site.scss   &&
-  curl --silent https://raw.githubusercontent.com/theStudio60/wplab-bulma/master/_wp-default.scss >> $SITE_THEME_DIR/assets/css/site/_wp-default.scss  && 
+  curl --silent https://raw.githubusercontent.com/theStudio60/wplab-bulma/master/_wp-default.scss > $SITE_THEME_DIR/assets/css/site/_wp-default.scss  &&
 
+  clear
+  echo ''
+  echo 'download wp-blocks (gutenberg) rules'
+  echo ''
+  curl --silent https://raw.githubusercontent.com/theStudio60/wplab-bulma/master/_wp-blocks.scss > $SITE_THEME_DIR/assets/css/site/_wp-blocks.scss 
+  
+  cp -r $SITE_THEME_DIR/node_modules/bulma-scss/components   $SITE_THEME_DIR/assets/css/  &&
+  cp -r $SITE_THEME_DIR/node_modules/bulma-scss/elements     $SITE_THEME_DIR/assets/css/  &&
+  cp -r $SITE_THEME_DIR/node_modules/bulma-scss/form         $SITE_THEME_DIR/assets/css/  &&
+  cp -r $SITE_THEME_DIR/node_modules/bulma-scss/grid         $SITE_THEME_DIR/assets/css/  &&
+  cp -r $SITE_THEME_DIR/node_modules/bulma-scss/layout       $SITE_THEME_DIR/assets/css/  &&
+  cp -r $SITE_THEME_DIR/node_modules/bulma-scss/utilities    $SITE_THEME_DIR/assets/css/  &&
+
+  clear ;
+  echo ''
+  echo 'download _styles.scss'
+  echo ''
+  curl --silent https://raw.githubusercontent.com/theStudio60/wplab-bulma/master/_styles.scss > $SITE_THEME_DIR/assets/css/_styles.scss 
+
+  clear ;
+  echo ''
+  echo 'download the main style.scss'
+  echo ''
+  curl --silent https://raw.githubusercontent.com/theStudio60/wplab-bulma/master/style.scss > $SITE_THEME_DIR/assets/css/style.scss 
 }
 
 install_project() {
@@ -392,11 +418,10 @@ install_project() {
 
   npm init -y &&
 
-
   bulma_install &&
 
   git init ;
- 
+  
   clear ; 
   echo 
   echo "Operation terminated"
